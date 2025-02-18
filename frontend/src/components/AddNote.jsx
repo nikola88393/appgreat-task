@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import validateInput from "../../utils/verifyInput.js";
+
 
 const AddNote = () => {
   const [error, setError] = useState("");
@@ -7,6 +9,13 @@ const AddNote = () => {
 
   const handleAddNew = async (e, name, description) => {
     e.preventDefault();
+
+    const msg = validateInput(name, description);
+
+    if(msg){
+      setError(msg);
+      return;
+    }
 
     try {
       const response = await fetch("http://localhost:3000/new", {
@@ -39,9 +48,9 @@ const AddNote = () => {
         }
       >
         <label htmlFor="name">Name:</label>
-        <input type="text" id="name" />
+        <input required type="text" id="name" />
         <label htmlFor="desc">Description:</label>
-        <input type="text" id="desc" />
+        <input required type="text" id="desc" />
         <button className="btn" type="submit">Create</button>
       </form>
     </div>

@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import validateInput from '../../utils/verifyInput.js'
 
 const EditNote = () => {
   const [noteData, setNoteData] = useState({});
   const [error, setError] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
+  
 
   useEffect(() => {
     const getSingleNote = async () => {
@@ -26,7 +28,11 @@ const EditNote = () => {
 
   const handleEdit = async (e, name, description) => {
     e.preventDefault();
-
+    const msg = validateInput(name, description);
+    if(msg){
+      setError(msg);
+      return;
+    }
     try {
       const response = await fetch(`http://localhost:3000/edit/${id}`, {
         method: "PUT",
@@ -49,7 +55,7 @@ const EditNote = () => {
 
   return (
     <div className="page-container">
-      <h1>Create new note</h1>
+      <h1>Edit note</h1>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <form
         onSubmit={(e) =>
@@ -57,9 +63,9 @@ const EditNote = () => {
         }
       >
         <label htmlFor="name">Name:</label>
-        <input defaultValue={noteData.name} type="text" id="name" />
+        <input required defaultValue={noteData.name} type="text" id="name" />
         <label htmlFor="desc">Description:</label>
-        <input defaultValue={noteData.description} type="text" id="desc" />
+        <input required defaultValue={noteData.description} type="text" id="desc" />
         <button className="btn" type="submit">Update</button>
       </form>
     </div>
