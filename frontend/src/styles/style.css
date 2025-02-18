@@ -1,0 +1,59 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #efefef;
+}
+
+header {
+    padding: 0.4rem;
+    background-color: beige;
+    text-align: center;
+}
+
+.page-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+.note-card {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid lightblue;
+    padding: 0.8rem;
+    margin-bottom: 0.6rem;
+    width: 400px;
+    border-radius: 0.4rem;
+    background-color: lightblue;
+}
+
+.note-btn-container {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.link,
+.btn {
+    background-color: lightsalmon;
+    padding: 0.5rem;
+    border: none;
+    color: #fff;
+    border-radius: 0.6rem;
+}
+
+.btn.danger,
+.link.danger {
+    background-color: red;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 400px;
+    margin: 0 auto;
+}

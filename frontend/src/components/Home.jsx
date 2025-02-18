@@ -47,18 +47,19 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className="page-container">
       <h1>Home</h1>
-      <Link to={'/new'}>Add new</Link>
+      <Link className="link" to={'/new'}>Add new</Link>
       {error && <p style={{ color: "red" }}>{error}</p>}
       {notes.length > 0 ? (
         notes.map((note) => (
-          <div key={note.id}>
-            <p>{note.name || "None"}</p>
-            <p>{note.description || "None"}</p>
-            <button onClick={() => handleDelete(note.id)}>Delete</button>
-            <Link to={`/edit/${note.id}`}>Edit</Link>
-            <p>------------</p>
+          <div className="note-card" key={note.id}>
+            <p>Name: {note.name || "None"}</p>
+            <p>Description: {note.description || "None"}</p>
+            <div className="note-btn-container">
+            <button className="btn danger" onClick={() => handleDelete(note.id)}>Delete</button>
+            <Link className="link" to={`/edit/${note.id}`}>Edit</Link>
+            </div>
           </div>
         ))
       ) : (

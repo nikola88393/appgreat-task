@@ -30,7 +30,7 @@ const AddNote = () => {
   };
 
   return (
-    <div>
+    <div className="page-container">
       <h1>Create new note</h1>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <form
@@ -42,7 +42,7 @@ const AddNote = () => {
         <input type="text" id="name" />
         <label htmlFor="desc">Description:</label>
         <input type="text" id="desc" />
-        <button type="submit">Create</button>
+        <button className="btn" type="submit">Create</button>
       </form>
     </div>
   );
